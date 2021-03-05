@@ -29,7 +29,7 @@ def get_cube_bounds(array: List[List[int]],row,col,cube_size=3):
     row_min=math.floor(row/cube_size)
     col_min = math.floor(col / cube_size)
 
-    return row_min,row_min+cube_size,col_min,col_min+cube_size
+    return row_min*cube_size,(row_min+1)*cube_size,col_min*cube_size,(col_min+1)+cube_size
 
 def get_cube_numbers(array: List[List[int]],row,col):
     #cube_bounds: 0: row_min, 1: row_max, 2: col_min, 3:col_max
