@@ -14,7 +14,7 @@ virtual environment and then simply run:
 python3 solver.py Example.xlsx
 ```
 
-and the result will be prompted.
+and the result will be prompted and also written to a new Excel file.
 
 ## About
 I started as a bet with our girlfriends that we are able to write a solver faster as 

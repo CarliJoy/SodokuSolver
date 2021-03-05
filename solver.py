@@ -6,6 +6,7 @@ from typing import List
 import math
 import numpy as np
 from reader import read_excel
+from writer import write_result
 
 n = np.NaN
 
@@ -149,6 +150,11 @@ def solver(matrix: List[List[int]], possibs_matrix: Dict[Tuple[int, int], Set[in
     raise SolutionNotFound("In the Main Solver no solution was found")
 
 
+def get_solved_path(path: Path):
+    folder = path.absolute().parent
+    return folder / f"{path.stem}_solved{path.suffix}"
+
+
 def run(filename: str):
     filename = Path(filename)
     print(f"** Reading: {filename}")
@@ -159,6 +165,9 @@ def run(filename: str):
         solution = solver(source)
         print("** Solved: ")
         print_sodouk(solution)
+        solved_path = get_solved_path(filename)
+        print(f"Writing solution to {solved_path}")
+        write_result(filename, solution, solved_path)
     except SolutionNotFound:
         print("** No solution found")
 
