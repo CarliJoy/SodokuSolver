@@ -72,7 +72,7 @@ solution_matrix = np.array([
 test1 = np.array([
     [5, 3, n,  n, 7, n,  n, n, n],
     [6, n, n,  1, 9, 5,  n, n, n],
-    [n, 9, 8,  3, 4, 2,  5, 6, 7],
+    [n, 9, 8,  n, n, n,  n, 6, n],
     [8, n, n,  n, 6, n,  n, n, 3],
     [4, n, n,  8, n, 3,  n, n, 1],
     [7, n, n,  n, 2, n,  n, n, 6],
