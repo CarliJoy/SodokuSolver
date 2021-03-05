@@ -24,6 +24,13 @@ input = np.array([
     [n, n, n,  1, 9, 5,  n, n, n],
     [n, n, 8,  n, n, n,  n, n, 6],
     [8, n, n,  n, 6, n,  n, n, n],
+    [4, n, n,  8, n, n,  n, n, n],
+    [n, n, n,  n, 2, n,  n, n, n],
+    [n, 6, n,  n, n, n,  2, 8, n],
+    [n, n, n,  4, 1, 9,  n, n, 5],
+    [n, n, n,  n, 6, n,  n, 7, n]
+
+
 ])
 
 
