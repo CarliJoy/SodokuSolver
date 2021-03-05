@@ -17,6 +17,13 @@ def print_sodouk(array: List[List[int]]):
             print("-"*(len(line)+len(line)/3))
         print("")
 
+def get_line()
+
+def get_poss_number(array: List[List[int]],row,col):
+    for i in range(array.shape[0]):
+        for j in range(array.shape[1]):
+            print(array[i,j])
+
 
 
 input = np.array([
@@ -33,4 +40,4 @@ input = np.array([
 
 ])
 
-
+get_poss_number(input,1,1)
