@@ -1,5 +1,5 @@
 import numpy as np
-from solver import get_possibilities
+from solver import get_possibilities, get_cube_bounds
 
 n = np.NaN
 
@@ -19,3 +19,4 @@ test = np.array([
 )
 
 assert get_possibilities(test, 0, 0) == {1,2,5,6,7,9}
+assert get_possibilities(test, 1, 0) == {2,3,6,7}
