@@ -18,6 +18,6 @@ test = np.array([
     np.float16
 )
 
-assert get_possibilities(test, 0, 0) == {1,2,5,6,7,9}
-assert get_possibilities(test, 1, 0) == {2,3,6,7}
 assert get_cube_numbers(test,1,1)== {3,8}
+assert get_possibilities(test, 0, 0) == {1,2,5,6,7,9}
+assert get_possibilities(test, 1, 0) == {2,6,7}

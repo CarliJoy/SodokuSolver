@@ -60,4 +60,5 @@ def get_possibilities(matrix: List[List[int]], row: int, col: int) -> Set[int]:
     possible = base_possibilities.copy()
     possible = possible.difference(matrix[row, :])
     possible = possible.difference(matrix[:, col])
+    possible = possible.difference(get_cube_numbers(matrix, row, col))
     return possible
