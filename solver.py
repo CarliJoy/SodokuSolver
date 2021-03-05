@@ -8,6 +8,8 @@ n = np.NaN
 
 base_possibilities = {1,2,3,4,5,6,7,8,9}
 
+class SolutionNotFound(ValueError):
+    pass
 
 
 def print_sodouk(array: List[List[int]]):
@@ -65,7 +67,7 @@ def get_possibilities(matrix: List[List[int]], row: int, col: int) -> Set[int]:
 
 
 def get_all_field_possibilities(matrix: List[List[int]]) -> Dict[Tuple[int, int], Set[int]]:
-    result = {}
+    result = dict()
     for i in range(0,9):
         for j in range(0,9):
             if np.isnan(matrix[i,j]):
@@ -82,12 +84,29 @@ def find_minimal_possible(possibs_dict: Dict[Tuple[int, int], Set[int]]) -> Tupl
             len_chosen = len(chosen)
             chosen_coord = coordinate
         if len(chosen) == 0:
-            raise ValueError("Not Solvable")
+            raise SolutionNotFound("Not Solvable")
     return chosen_coord, chosen
 
-def solver(matrix: List[List[int]]):
-    input = matrix.copy()
+def solver(matrix: List[List[int]], possibs_matrix: Dict[Tuple[int, int], Set[int]] = None) -> List[List[int]]:
 
+    if possibs_matrix is None:
+        possibs_matrix = get_all_field_possibilities(matrix)
 
-possibs = get_all_field_possibilities(input)
-chosen = find_minimal_possible(possibs)
+    # Kleinstes Möglichkeitsset finde
+    coord, possibs = find_minimal_possible(possibs_matrix)
+
+    # Für jede Möglichkeit den Solver nochmal ausführen, rekursiv
+    for possib in possibs:
+        try:
+            # Kopie erstellen vom Original
+            new_try = matrix.copy()
+            new_try[coord[0], coord[1]] = possib
+            new_try_possibs_matrix = get_all_field_possibilities(new_try)
+            if len(new_try_possibs_matrix) == 0:
+                return new_try
+            return solver(new_try, new_try_possibs_matrix)
+        except SolutionNotFound:
+            pass
+    raise SolutionNotFound("In the Main Solver no solution was found")
+
+print_sodouk(solver(input))
