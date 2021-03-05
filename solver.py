@@ -1,8 +1,11 @@
-from typing import List
+from typing import List, Set
 
 import numpy as np
 
 n = np.NaN
+
+base_possibilities = {1,2,3,4,5,6,7,8,9}
+
 
 def print_sodouk(array: List[List[int]]):
     print("-" * (9 * 3- 2))
@@ -18,13 +21,6 @@ def print_sodouk(array: List[List[int]]):
         print("")
         if line_number % 3 == 0:
             print("-"*(9*3-2))
-
-def get_line()
-
-def get_poss_number(array: List[List[int]],row,col):
-    for i in range(array.shape[0]):
-        for j in range(array.shape[1]):
-            print(array[i,j])
 
 
 
@@ -42,4 +38,8 @@ input = np.array([
     np.float16
 )
 
-get_poss_number(input,1,1)
+def get_possibilities(matrix: List[List[int]], row: int, col: int) -> Set[int]:
+    possible = base_possibilities.copy()
+    possible = possible.difference(matrix[row, :])
+    possible = possible.difference(matrix[:, col])
+    return possible
