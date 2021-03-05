@@ -9,6 +9,7 @@ n = np.NaN
 base_possibilities = {1,2,3,4,5,6,7,8,9}
 
 
+
 def print_sodouk(array: List[List[int]]):
     print("-" * (9 * 3- 2))
     for line_number, line, in enumerate(array, start=1):
@@ -24,19 +25,21 @@ def print_sodouk(array: List[List[int]]):
         if line_number % 3 == 0:
             print("-"*(9*3-2))
 
-def get_cube_bounds(array: List[List[int]],row,col,cube_size):
-    cube_bounds=array[0,0,0,0]
-    #get value between 0 and 1
-    row_min=array.shape[0]/row
-    #multiply with cubesize and floor
-    row_min=math.floor(row_min*cube_size)
+def get_cube_bounds(array: List[List[int]],row,col,cube_size=3):
+    row_min=math.floor(row/cube_size)
+    col_min = math.floor(col / cube_size)
 
-def cube_number(array: List[List[int]],row,col):
+    return row_min,row_min+cube_size,col_min,col_min+cube_size
+
+def get_cube_numbers(array: List[List[int]],row,col):
     #cube_bounds: 0: row_min, 1: row_max, 2: col_min, 3:col_max
-    cube_bounds=array[0,0,0,0]
-    for i in range(array.shape[0]):
-        for j in range(array.shape[1]):
-            print(array[i,j])
+    cube_bounds=get_cube_bounds(array,row,col)
+    return {
+        array[i,j]
+            for i in range(cube_bounds[0],cube_bounds[1])
+        for j in range(cube_bounds[2],cube_bounds[3])
+        if not np.isnan(array[i,j])
+    }
 
 input = np.array([
     [n, 3, n,  n, n, n,  n, n, n],
@@ -51,6 +54,7 @@ input = np.array([
 ],
     np.float16
 )
+
 
 def get_possibilities(matrix: List[List[int]], row: int, col: int) -> Set[int]:
     possible = base_possibilities.copy()
