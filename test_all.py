@@ -1,4 +1,3 @@
-import pytest
 import numpy as np
 from solver import get_possibilities, get_cube_bounds, get_cube_numbers
 
