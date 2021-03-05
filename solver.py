@@ -1,4 +1,4 @@
-from typing import List, Set
+from typing import List, Set, Dict, Tuple
 
 from typing import List
 import math
@@ -62,3 +62,32 @@ def get_possibilities(matrix: List[List[int]], row: int, col: int) -> Set[int]:
     possible = possible.difference(matrix[:, col])
     possible = possible.difference(get_cube_numbers(matrix, row, col))
     return possible
+
+
+def get_all_field_possibilities(matrix: List[List[int]]) -> Dict[Tuple[int, int], Set[int]]:
+    result = {}
+    for i in range(0,9):
+        for j in range(0,9):
+            if np.isnan(matrix[i,j]):
+                result[(i,j)] = get_possibilities(matrix, i,j)
+    return result
+
+def find_minimal_possible(possibs_dict: Dict[Tuple[int, int], Set[int]]) -> Tuple[Tuple[int,int], Set[int]]:
+    chosen = None
+    len_chosen = 10
+    chosen_coord = None
+    for coordinate, possib in possibs_dict.items():
+        if len(possib) < len_chosen:
+            chosen = possib
+            len_chosen = len(chosen)
+            chosen_coord = coordinate
+        if len(chosen) == 0:
+            raise ValueError("Not Solvable")
+    return chosen_coord, chosen
+
+def solver(matrix: List[List[int]]):
+    input = matrix.copy()
+
+
+possibs = get_all_field_possibilities(input)
+chosen = find_minimal_possible(possibs)
