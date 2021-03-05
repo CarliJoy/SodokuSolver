@@ -1,5 +1,6 @@
 import numpy as np
-from solver import get_possibilities, get_cube_bounds, get_cube_numbers
+import pytest
+from solver import get_possibilities, get_cube_numbers, solution_matrix, test1, test2, solver
 
 n = np.NaN
 
@@ -38,3 +39,7 @@ def test_cube_numbers(row, col, result):
 def test_cube_numbers(row, col, result):
     assert get_possibilities(test, row, col) == result
 
+
+def test_solver():
+    assert np.array_equal(solver(test1), solution_matrix)
+    assert np.array_equal(solver(test2), solution_matrix)
