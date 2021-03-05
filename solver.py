@@ -5,17 +5,19 @@ import numpy as np
 n = np.NaN
 
 def print_sodouk(array: List[List[int]]):
-    for line_number, line, in enumerate(array):
-        for row_number, val in enumerate(line):
-            if val == np.NaN:
-                val = " "
+    print("-" * (9 * 3- 2))
+    for line_number, line, in enumerate(array, start=1):
+        print("|", end=" ")
+        for row_number, val in enumerate(line, start=1):
+            if np.isnan(val):
+                print(" ", end=" ")
             else:
-                print(f"{val}", end=" ")
-            if row_number % 3:
-                print("|", end="")
-        if line_number % 3:
-            print("-"*(len(line)+len(line)/3))
+                print(f"{val:1.0f}", end=" ")
+            if row_number % 3 == 0:
+                print("|", end=" ")
         print("")
+        if line_number % 3 == 0:
+            print("-"*(9*3-2))
 
 def get_line()
 
@@ -36,8 +38,8 @@ input = np.array([
     [n, 6, n,  n, n, n,  2, 8, n],
     [n, n, n,  4, 1, 9,  n, n, 5],
     [n, n, n,  n, 6, n,  n, 7, n]
-
-
-])
+],
+    np.float16
+)
 
 get_poss_number(input,1,1)
