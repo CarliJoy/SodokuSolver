@@ -1,5 +1,5 @@
 from typing import List
-
+import math
 import numpy as np
 
 n = np.NaN
@@ -19,14 +19,19 @@ def print_sodouk(array: List[List[int]]):
         if line_number % 3 == 0:
             print("-"*(9*3-2))
 
-def get_line()
+def get_cube_bounds(array: List[List[int]],row,col,cube_size):
+    cube_bounds=array[0,0,0,0]
+    #get value between 0 and 1
+    row_min=array.shape[0]/row
+    #multiply with cubesize and floor
+    row_min=math.floor(row_min*cube_size)
 
-def get_poss_number(array: List[List[int]],row,col):
+def cube_number(array: List[List[int]],row,col):
+    #cube_bounds: 0: row_min, 1: row_max, 2: col_min, 3:col_max
+    cube_bounds=array[0,0,0,0]
     for i in range(array.shape[0]):
         for j in range(array.shape[1]):
             print(array[i,j])
-
-
 
 input = np.array([
     [n, 3, n,  n, n, n,  n, n, n],
