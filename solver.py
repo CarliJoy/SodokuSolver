@@ -1,8 +1,13 @@
+from typing import List, Set
+
 from typing import List
 import math
 import numpy as np
 
 n = np.NaN
+
+base_possibilities = {1,2,3,4,5,6,7,8,9}
+
 
 def print_sodouk(array: List[List[int]]):
     print("-" * (9 * 3- 2))
@@ -47,4 +52,8 @@ input = np.array([
     np.float16
 )
 
-get_poss_number(input,1,1)
+def get_possibilities(matrix: List[List[int]], row: int, col: int) -> Set[int]:
+    possible = base_possibilities.copy()
+    possible = possible.difference(matrix[row, :])
+    possible = possible.difference(matrix[:, col])
+    return possible
