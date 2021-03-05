@@ -1,8 +1,11 @@
+#!/usr/bin/env python
+from pathlib import Path
 from typing import List, Set, Dict, Tuple
-
+import sys
 from typing import List
 import math
 import numpy as np
+from reader import read_excel
 
 n = np.NaN
 
@@ -145,4 +148,23 @@ def solver(matrix: List[List[int]], possibs_matrix: Dict[Tuple[int, int], Set[in
             pass
     raise SolutionNotFound("In the Main Solver no solution was found")
 
-print_sodouk(solver(input_matrix))
+
+def run(filename: str):
+    filename = Path(filename)
+    print(f"** Reading: {filename}")
+    print(" ** Trying to solve: ")
+    source = read_excel(filename)
+    print_sodouk(source)
+    try:
+        solution = solver(source)
+        print("** Solved: ")
+        print_sodouk(solution)
+    except SolutionNotFound:
+        print("** No solution found")
+
+
+if __name__ == '__main__':
+    if len(sys.argv) == 2:
+        run(sys.argv[1])
+    else:
+        print("Program except only one value, the path to the excel input")
