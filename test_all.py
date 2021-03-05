@@ -18,10 +18,24 @@ test = np.array([
 ],
     np.float16
 )
-def test_cube_numbers():
-    assert get_cube_numbers(test,1,1)== {3,8}
 
-def test_cube_numbers2():
-    assert get_cube_numbers(test,8,8) == {2,8,5,7}
-    assert get_possibilities(test, 0, 0) == {1,2,5,6,7,9}
-    assert get_possibilities(test, 1, 0) == {2,6,7}
+@pytest.mark.parametrize(
+    "row,col,result",
+    [
+        (1, 1, {3,8}),
+        (8, 8, {2,8,5,7}),
+    ]
+)
+def test_cube_numbers(row, col, result):
+    assert get_cube_numbers(test, row, col) == result
+
+@pytest.mark.parametrize(
+    "row,col,result",
+    [
+        (1, 0, {2,6,7}),
+        (4, 6, {1,3,5,6,7,9}),
+    ]
+)
+def test_cube_numbers(row, col, result):
+    assert get_possibilities(test, row, col) == result
+
