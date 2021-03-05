@@ -1,0 +1,3 @@
+# Sodoku Solver
+
+just a fun test with my flatmate ...
